@@ -2,8 +2,8 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
 from rich.prompt import Confirm
-from rich.columns import Columns
 from rich import print
+from rich.table import Table
 
 console = Console()
 
@@ -45,32 +45,20 @@ def check_price():
 
 def check_params():
     global items
-    global date_
-    global time_
     global name_
-    items_panel = Panel(
-        Text('\n'.join([f'{items}' for items in items])),
-        title='Название процедуры',
-        width=34
-    )
-    date_panel = Panel(
-        Text('\n'.join([f'{date_}' for date_ in date_])),
-        title='Дата записи',
-        width=34
-    )
-    time_panel = Panel(
-        ('\n'.join([f'{time_}' for time_ in time_])),
-        title='Время записи',
-        width=34
-    )
-    name_panel = Panel(
-        Text('\n'.join([f'{name_}' for name_ in name_])),
-        title='На запись придет',
-        width=34
-    )
+    global time_
+    global date_
+    global cost_
+    table = Table(title="Todo List")
 
-    all_panel = Columns([name_panel, items_panel, date_panel, time_panel])
-    console.print(all_panel)
+    table.add_column("Название процедуры")
+    table.add_column("Дата записи")
+    table.add_column("Время записи")
+    table.add_column('Стоимость услуги')
+    table.add_column("Ваше имя")
+
+    table.add_row(f'{items}', f'{date_}', f'{time_}', f'{cost_}', f'{name_}')
+    console.print(table)
 
 
 def cancel_appointment():
