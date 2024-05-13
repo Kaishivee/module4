@@ -49,7 +49,7 @@ def check_params():
     global time_
     global date_
     global cost_
-    table = Table(title="Todo List")
+    table = Table(title="Ваша запись")
 
     table.add_column("Название процедуры")
     table.add_column("Дата записи")
